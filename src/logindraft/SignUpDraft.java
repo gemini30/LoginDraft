@@ -153,7 +153,7 @@ public class SignUpDraft extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Already have an accout?  Login");
+        jLabel7.setText("Already have an account?  Login");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
