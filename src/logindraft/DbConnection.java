@@ -25,13 +25,12 @@ public class DbConnection {
      */
     
     Connection conn;
-    PreparedStatement ps;
     
     DbConnection() {
         // MySQL database connection
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?" + "user=root&password=Jinish@123");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -39,11 +38,11 @@ public class DbConnection {
     
         public boolean login(String useremail, String password) {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/user?user=root&password=Jinish@123");
-            ps = conn.prepareStatement("Select * from user where user_name=? and user_password=?");
-            ps.setString(1, useremail);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
+
+            PreparedStatement pst = conn.prepareStatement("Select * from user where user_email=? and user_password=?");
+            pst.setString(1, useremail);
+            pst.setString(2, password);
+            ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 return true;
             } else {
