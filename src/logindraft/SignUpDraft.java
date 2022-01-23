@@ -169,7 +169,7 @@ public class SignUpDraft extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Already have an accout?  Login");
+        jLabel7.setText("Already have an account?  Login");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
