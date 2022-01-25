@@ -42,6 +42,7 @@ public class MainPage extends javax.swing.JFrame {
         buy_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         load = new javax.swing.JButton();
+        id = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -90,11 +91,17 @@ public class MainPage extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(load)
                 .addGap(20, 20, 20))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(load)
                 .addGap(69, 69, 69)
                 .addComponent(buy_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,10 +144,14 @@ public class MainPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Price", "Brand", "Description"
+                "Product Id", "Name", "Price", "Brand", "Description"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -169,7 +180,7 @@ public class MainPage extends javax.swing.JFrame {
         TableModel model1 = jTable1.getModel();
         int index[] = jTable1.getSelectedRows();
         
-        Object[] row  = new Object[4];
+        Object[] row  = new Object[5];
         
         ConfirmOrder conpage = new ConfirmOrder();
         
@@ -182,33 +193,36 @@ public class MainPage extends javax.swing.JFrame {
             row[1] = model1.getValueAt(index[i], 1);
             row[2] = model1.getValueAt(index[i], 2);
             row[3] = model1.getValueAt(index[i], 3);
+            row[4] = model1.getValueAt(index[i], 4);
             
-            SUM = SUM + Integer.parseInt(row[1].toString());  
+            SUM = SUM + Integer.parseInt(row[2].toString());  
             
             model2.addRow(row);
         }
         
         System.out.println(SUM);
         conpage.bill.setText(Integer.toString(SUM));
-        
+        conpage.id.setText(this.id.getText());
         conpage.setVisible(true);
-        
+        conpage.pack();
+        this.dispose();
     }//GEN-LAST:event_buy_btnActionPerformed
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         try {
             // TODO add your handling code here:
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
-            ps = conn.prepareStatement("select * from product");
+            ps = conn.prepareStatement("select * from product where u_id is null");
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
+                String id = rs.getString("p_id");
                 String name = rs.getString("p_name");
                 String price = String.valueOf(rs.getInt("p_price"));
                 String branch = rs.getString("p_brand");
                 String desc = rs.getString("p_desc");
                 
-                String tbData[] = {name,price,branch,desc};
+                String tbData[] = {id,name,price,branch,desc};
                 
                 DefaultTableModel tb1Model = (DefaultTableModel)jTable1.getModel();
                 
@@ -258,6 +272,7 @@ public class MainPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buy_btn;
+    public javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -56,7 +56,7 @@ public class SignUpDraft extends javax.swing.JFrame {
         registerbtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        signname1 = new javax.swing.JTextField();
+        signsurname = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,11 +182,11 @@ public class SignUpDraft extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("SURNAME");
 
-        signname1.setBackground(new java.awt.Color(249, 192, 101));
-        signname1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        signname1.addActionListener(new java.awt.event.ActionListener() {
+        signsurname.setBackground(new java.awt.Color(249, 192, 101));
+        signsurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signsurname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signname1ActionPerformed(evt);
+                signsurnameActionPerformed(evt);
             }
         });
 
@@ -220,7 +220,7 @@ public class SignUpDraft extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(signname1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(signsurname, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(226, 226, 226)
                         .addComponent(registerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -234,7 +234,7 @@ public class SignUpDraft extends javax.swing.JFrame {
                     .addComponent(signname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signname1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(signsurname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,17 +288,23 @@ public class SignUpDraft extends javax.swing.JFrame {
         // TODO add your handling code here:
         String useremail = signemail.getText();
         String username = signname.getText();
+        String usersurname = signsurname.getText();
         String password = signpassword.getText();
         if (username.length() > 0 && !username.equals("") && useremail.length()>0 && password.length() > 4) {
-                try {
+        try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
-            ps = conn.prepareStatement("insert into user(user_name,user_email,user_password)values(?,?,?)");
+            ps = conn.prepareStatement("insert into user(u_name,u_surname,u_email,u_password)values(?,?,?,?)");
             ps.setString(1, username);
-            ps.setString(2,useremail);
-            ps.setString(3, password);
+            ps.setString(2,usersurname);
+            ps.setString(3,useremail);
+            ps.setString(4, password);
             int rs = ps.executeUpdate();
             if (rs != 0) {
                 System.out.println("Successfull");
+                LogDraft login_page = new LogDraft();
+                    login_page.setVisible(true);
+                    login_page.pack();
+                    this.dispose();
             } else {
                 System.out.println("Failed");
             }
@@ -317,9 +323,9 @@ public class SignUpDraft extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
-    private void signname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signname1ActionPerformed
+    private void signsurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signsurnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_signname1ActionPerformed
+    }//GEN-LAST:event_signsurnameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,7 +380,7 @@ public class SignUpDraft extends javax.swing.JFrame {
     private javax.swing.JPasswordField signcpassword;
     private javax.swing.JTextField signemail;
     private javax.swing.JTextField signname;
-    private javax.swing.JTextField signname1;
     private javax.swing.JPasswordField signpassword;
+    private javax.swing.JTextField signsurname;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,13 @@
  */
 package logindraft;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -16,6 +23,9 @@ public class AdminLogin extends javax.swing.JFrame {
     public AdminLogin() {
         initComponents();
     }
+    
+    Connection conn;
+    PreparedStatement ps;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,11 +131,12 @@ public class AdminLogin extends javax.swing.JFrame {
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton3)))
+                        .addComponent(jButton1)))
                 .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,6 +203,37 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String useremail = jTextField1.getText();
+        String password = jPasswordField1.getText();
+        if (useremail.length() > 0 && !useremail.equals("") && password.length() > 0) {
+
+            try {
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
+                ps = conn.prepareStatement("Select * from shopkeeper where s_email=? and s_password=?");
+                ps.setString(1, useremail);
+                ps.setString(2, password);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    
+                    System.out.println("Succesfull");
+                    JOptionPane.showMessageDialog(null, "Success");
+                    AddPage add_page = new AddPage();
+                    add_page.id.setText(rs.getString("s_id"));
+                    add_page.setVisible(true);
+                    add_page.pack();
+                    this.dispose();
+                } else {
+                    System.out.println("Failed");
+                }
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            System.out.println("Wrong format");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -232,6 +274,8 @@ public class AdminLogin extends javax.swing.JFrame {
             }
         });
     }
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

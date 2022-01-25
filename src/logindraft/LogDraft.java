@@ -229,6 +229,10 @@ public class LogDraft extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        AdminLogin adminlogin = new AdminLogin();
+        adminlogin.setVisible(true);
+        adminlogin.pack();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void gotosignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotosignupMouseClicked
@@ -261,6 +265,11 @@ public class LogDraft extends javax.swing.JFrame {
                 if (rs.next()) {
                     System.out.println("Succesfull");
                     JOptionPane.showMessageDialog(null, "Success");
+                    MainPage main_page = new MainPage();
+                    main_page.id.setText(rs.getString("u_id"));
+                    main_page.setVisible(true);
+                    main_page.pack();
+                    this.dispose();
                 } else {
                     System.out.println("Failed");
                 }
