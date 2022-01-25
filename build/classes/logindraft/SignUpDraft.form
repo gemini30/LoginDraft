@@ -148,7 +148,7 @@
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="92" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="signname1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="signsurname" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
@@ -167,7 +167,7 @@
                       <Component id="signname" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="signname1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="signsurname" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -338,7 +338,7 @@
             <Property name="text" type="java.lang.String" value="SURNAME"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="signname1">
+        <Component class="javax.swing.JTextField" name="signsurname">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="65" green="c0" red="f9" type="rgb"/>
@@ -348,7 +348,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signname1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signsurnameActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
