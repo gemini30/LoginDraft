@@ -254,7 +254,7 @@ public class LogDraft extends javax.swing.JFrame {
 
             try {
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
-                ps = conn.prepareStatement("Select * from user where user_email=? and user_password=?");
+                ps = conn.prepareStatement("Select * from user where u_email=? and u_password=?");
                 ps.setString(1, useremail);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
