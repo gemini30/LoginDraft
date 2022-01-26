@@ -44,7 +44,7 @@ public class LogDraft extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        loginemail = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         login_btn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -93,11 +93,11 @@ public class LogDraft extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
 
-        jTextField1.setBackground(new java.awt.Color(249, 192, 101));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        loginemail.setBackground(new java.awt.Color(249, 192, 101));
+        loginemail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        loginemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                loginemailActionPerformed(evt);
             }
         });
 
@@ -155,7 +155,7 @@ public class LogDraft extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(loginemail, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
@@ -168,7 +168,7 @@ public class LogDraft extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loginemail, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,9 +242,11 @@ public class LogDraft extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_gotosignupMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField1ActionPerformed
+    private void loginemailActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jTextField1ActionPerformed
+    
+ 
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
@@ -252,7 +254,7 @@ public class LogDraft extends javax.swing.JFrame {
 
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_login_btnActionPerformed
         // TODO add your handling code here:
-        String useremail = jTextField1.getText();
+        String useremail = loginemail.getText();
         String password = jPasswordField1.getText();
         if (useremail.length() > 0 && !useremail.equals("") && password.length() > 0) {
 
@@ -267,6 +269,7 @@ public class LogDraft extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Success");
                     MainPage main_page = new MainPage();
                     main_page.id.setText(rs.getString("u_id"));
+                    main_page.logout_btn.setText("Logout");
                     main_page.setVisible(true);
                     main_page.pack();
                     this.dispose();
@@ -339,7 +342,7 @@ public class LogDraft extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton login_btn;
+    public javax.swing.JTextField loginemail;
     // End of variables declaration//GEN-END:variables
 }

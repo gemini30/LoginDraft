@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -26,7 +27,7 @@ public class MainPage extends javax.swing.JFrame {
         initComponents();
     }
     
-        Connection conn;
+    Connection conn;
     PreparedStatement ps;
 
     /** This method is called from within the constructor to
@@ -42,12 +43,12 @@ public class MainPage extends javax.swing.JFrame {
         buy_btn = new javax.swing.JButton();
         load = new javax.swing.JButton();
         id = new javax.swing.JLabel();
+        logout_btn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +76,15 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        id.setForeground(new java.awt.Color(105, 163, 101));
+        logout_btn.setBackground(new java.awt.Color(54, 4, 4));
+        logout_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        logout_btn.setForeground(new java.awt.Color(255, 209, 219));
+        logout_btn.setText("Login");
+        logout_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,18 +97,21 @@ public class MainPage extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(load, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                            .addComponent(buy_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(buy_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logout_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
                 .addComponent(load, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buy_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
+                .addGap(53, 53, 53)
+                .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 120, 530));
@@ -161,16 +173,6 @@ public class MainPage extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(180);
         }
 
-        jButton2.setBackground(new java.awt.Color(18, 26, 78));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(241, 109, 25));
-        jButton2.setText("<---");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("To buy products press ctrl + click on the product of your choices");
 
@@ -181,9 +183,7 @@ public class MainPage extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(25, 235, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap(74, Short.MAX_VALUE)
@@ -196,9 +196,7 @@ public class MainPage extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -209,12 +207,37 @@ public class MainPage extends javax.swing.JFrame {
 
     private void buy_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buy_btnActionPerformed
         // TODO add your handling code here:
+        
+        if(id.getText()==""){
+            JOptionPane.showMessageDialog(null, "Please Login to add stuff to your cart");
+            return;
+        }
+        ConfirmOrder conpage = new ConfirmOrder();
+        try {
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
+        ps = conn.prepareStatement("select u_phone,u_address from user where u_id=?");
+        ps.setInt(1, Integer.parseInt(id.getText()));
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+
+            if(rs.getString("u_phone")!=null || rs.getString("u_address")!=null){
+                Long phone = Long.parseLong(rs.getString("u_phone"));
+                String address = rs.getString("u_address");
+                conpage.confirmaddress.setText(address);
+                System.out.println(conpage.confirmaddress.getText());
+                conpage.confirmphone.setText(phone.toString());
+            }
+        }
+        } catch (SQLException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         TableModel model1 = jTable1.getModel();
         int index[] = jTable1.getSelectedRows();
         
         Object[] row  = new Object[5];
         
-        ConfirmOrder conpage = new ConfirmOrder();
+        
         
         DefaultTableModel model2 = (DefaultTableModel)conpage.jTable1.getModel();
         
@@ -235,6 +258,7 @@ public class MainPage extends javax.swing.JFrame {
         System.out.println(SUM);
         conpage.bill.setText(Integer.toString(SUM));
         conpage.id.setText(this.id.getText());
+
         conpage.setVisible(true);
         conpage.pack();
         this.dispose();
@@ -267,9 +291,13 @@ public class MainPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_loadActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void logout_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        LogDraft login_page = new LogDraft();
+        login_page.setVisible(true);
+        login_page.pack();
+        this.dispose();
+    }//GEN-LAST:event_logout_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,7 +337,6 @@ public class MainPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buy_btn;
     public javax.swing.JLabel id;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -318,6 +345,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton load;
+    public javax.swing.JButton logout_btn;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -296,7 +296,7 @@ public class SignUpDraft extends javax.swing.JFrame {
         String usersurname = signsurname.getText();
         String password = signpassword.getText();
         String cpassword = signcpassword.getText();
-        if(password.length()!=cpassword.length()){
+        if(!password.equals(cpassword)){
             JOptionPane.showMessageDialog(null,"Password and confirm password are diffrent");
             signcpassword.setText("");
             signpassword.setText("");
@@ -311,6 +311,7 @@ public class SignUpDraft extends javax.swing.JFrame {
            if (rs2.next()) {
                JOptionPane.showMessageDialog(null, "Already a user , login with email and password to enter the store");
                LogDraft login_page = new LogDraft();
+               login_page.loginemail.setText(useremail);
                login_page.setVisible(true);
                login_page.pack();
                this.dispose();

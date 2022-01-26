@@ -82,6 +82,7 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel3.setText("PASSWORD:");
 
         jPasswordField1.setBackground(new java.awt.Color(249, 192, 101));
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -89,6 +90,7 @@ public class AdminLogin extends javax.swing.JFrame {
         });
 
         jTextField1.setBackground(new java.awt.Color(249, 192, 101));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -237,6 +239,10 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        LogDraft login_page = new LogDraft();
+        login_page.setVisible(true);
+        login_page.pack();
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -41,9 +41,9 @@ public class ConfirmOrder extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        phone = new javax.swing.JTextField();
+        confirmphone = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        address = new java.awt.TextArea();
+        confirmaddress = new java.awt.TextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -92,20 +92,20 @@ public class ConfirmOrder extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("ADDRESS:");
 
-        phone.setBackground(new java.awt.Color(105, 163, 101));
-        phone.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        phone.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        phone.addActionListener(new java.awt.event.ActionListener() {
+        confirmphone.setBackground(new java.awt.Color(105, 163, 101));
+        confirmphone.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        confirmphone.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        confirmphone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneActionPerformed(evt);
+                confirmphoneActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("<html>PHONE<br>NUMBER:</html>");
 
-        address.setBackground(new java.awt.Color(105, 163, 101));
-        address.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        confirmaddress.setBackground(new java.awt.Color(105, 163, 101));
+        confirmaddress.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -138,6 +138,8 @@ public class ConfirmOrder extends javax.swing.JFrame {
 
         bill.setBackground(new java.awt.Color(234, 138, 35));
         bill.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        id.setForeground(new java.awt.Color(234, 138, 35));
 
         jButton2.setBackground(new java.awt.Color(18, 26, 78));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -192,8 +194,8 @@ public class ConfirmOrder extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(confirmphone, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(195, 195, 195)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -223,9 +225,9 @@ public class ConfirmOrder extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(confirmphone, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(23, 23, 23)
-                                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(confirmaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -257,9 +259,9 @@ public class ConfirmOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
+    private void confirmphoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmphoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_phoneActionPerformed
+    }//GEN-LAST:event_confirmphoneActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -268,23 +270,19 @@ public class ConfirmOrder extends javax.swing.JFrame {
         
         Object[] row  = new Object[5];
         
-        int phone = Integer.parseInt(this.phone.getText());
-        String address = this.address.getText();
+        Long phone = Long.parseLong(this.confirmphone.getText());
+        String address = this.confirmaddress.getText();
         
         if (phone > 0 && address.length()>0 ) {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
-            ps = conn.prepareStatement("update user set u_phone=? and u_address=? where u_id=?");
-            ps.setInt(1, phone);
+            ps = conn.prepareStatement("update user set u_phone=? , u_address=? where u_id=?");
+            ps.setLong(1, phone);
             ps.setString(2,address);
             ps.setInt(3,Integer.parseInt(id.getText()));
             int rs = ps.executeUpdate();
             if (rs != 0) {
                 System.out.println("Successfull");
-                LogDraft login_page = new LogDraft();
-                    login_page.setVisible(true);
-                    login_page.pack();
-                    this.dispose();
             } else {
                 System.out.println("Failed");
             }
@@ -369,8 +367,9 @@ public class ConfirmOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.TextArea address;
     public javax.swing.JLabel bill;
+    public java.awt.TextArea confirmaddress;
+    public javax.swing.JTextField confirmphone;
     public javax.swing.JLabel id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -384,6 +383,5 @@ public class ConfirmOrder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
-    private javax.swing.JTextField phone;
     // End of variables declaration//GEN-END:variables
 }
