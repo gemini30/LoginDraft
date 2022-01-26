@@ -75,19 +75,23 @@ public class AddPage extends javax.swing.JFrame {
             }
         });
 
-        p_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        p_name.setBackground(new java.awt.Color(47, 170, 219));
+        p_name.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        p_brand.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        p_brand.setBackground(new java.awt.Color(47, 170, 219));
+        p_brand.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         p_brand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 p_brandActionPerformed(evt);
             }
         });
 
-        p_price.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        p_price.setBackground(new java.awt.Color(47, 170, 219));
+        p_price.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
+        p_desc.setBackground(new java.awt.Color(47, 170, 219));
         p_desc.setColumns(20);
-        p_desc.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        p_desc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         p_desc.setRows(5);
         jScrollPane1.setViewportView(p_desc);
 
@@ -125,6 +129,9 @@ public class AddPage extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        id.setBackground(new java.awt.Color(234, 138, 35));
+        id.setForeground(new java.awt.Color(234, 138, 35));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -164,9 +171,11 @@ public class AddPage extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(p_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(p_name, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
