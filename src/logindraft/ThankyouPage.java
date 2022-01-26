@@ -21,7 +21,7 @@ public class ThankyouPage extends javax.swing.JFrame {
         ScaleImg();
     }
         public void ScaleImg(){
-        ImageIcon icon = new ImageIcon("C:\\Users\\Jash\\java dbms\\ty.jpeg");
+        ImageIcon icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\javadb\\LoginDraft\\images\\thankyou.jpeg");
         Image img = icon.getImage();
         Image imgscale = img.getScaledInstance(bglabel.getWidth(), bglabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgscale);

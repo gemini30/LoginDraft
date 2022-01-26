@@ -272,6 +272,7 @@ public class LogDraft extends javax.swing.JFrame {
                     this.dispose();
                 } else {
                     System.out.println("Failed");
+                    JOptionPane.showMessageDialog(null, "Invalid Password");
                 }
 
             } catch (SQLException e) {

@@ -148,7 +148,7 @@ public class SignUpDraft extends javax.swing.JFrame {
         });
 
         signcpassword.setBackground(new java.awt.Color(249, 192, 101));
-        signcpassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        signcpassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         signcpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signcpasswordActionPerformed(evt);
@@ -258,7 +258,7 @@ public class SignUpDraft extends javax.swing.JFrame {
                 .addComponent(registerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, 580, 360));
@@ -295,9 +295,27 @@ public class SignUpDraft extends javax.swing.JFrame {
         String username = signname.getText();
         String usersurname = signsurname.getText();
         String password = signpassword.getText();
-        if (username.length() > 0 && !username.equals("") && useremail.length()>0 && password.length() > 4) {
+        String cpassword = signcpassword.getText();
+        if(password.length()!=cpassword.length()){
+            JOptionPane.showMessageDialog(null,"Password and confirm password are diffrent");
+            signcpassword.setText("");
+            signpassword.setText("");
+            return;
+        }
+        if (username.length() > 0 && !username.equals("") && useremail.length()>0 && password.length() > 4 ) {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?user=root&password=Jinish@123");
+            ps = conn.prepareStatement("Select * from user where u_email=?");
+            ps.setString(1, useremail);
+            ResultSet rs2 = ps.executeQuery();
+           if (rs2.next()) {
+               JOptionPane.showMessageDialog(null, "Already a user , login with email and password to enter the store");
+               LogDraft login_page = new LogDraft();
+               login_page.setVisible(true);
+               login_page.pack();
+               this.dispose();
+           }
+           else{
             ps = conn.prepareStatement("insert into user(u_name,u_surname,u_email,u_password)values(?,?,?,?)");
             ps.setString(1, username);
             ps.setString(2,usersurname);
@@ -307,16 +325,20 @@ public class SignUpDraft extends javax.swing.JFrame {
             if (rs != 0) {
                 System.out.println("Successfull");
                 LogDraft login_page = new LogDraft();
-                    login_page.setVisible(true);
-                    login_page.pack();
-                    this.dispose();
+                login_page.setVisible(true);
+                login_page.pack();
+                this.dispose();
             } else {
                 System.out.println("Failed");
             }
+            
+           }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        } else{
+            JOptionPane.showMessageDialog(null, "Enter all fields properly please");
         }
     }//GEN-LAST:event_registerbtnMouseClicked
 
